@@ -1,0 +1,140 @@
+{
+  "asset_base_path": "/Game/RoofAssets/meshes",
+  "assets_quantity_data": "buildings.csv",
+  "assets_quantity_fit": "histogram",
+  "default_asset_settings": {
+    "asset_material_path": "/Game/RoofAssets/materials",
+    "quantity": {
+      "distribution": "constant",
+      "mean": 1
+    },
+    "probability_placement": 0.25,
+    "place_on": ["Building*"],
+    "position": {
+      "min_dist_from_border": 50.0,
+      "distribution": "uniform"
+    }
+  },
+  "assets": [
+    {
+      "uid": "small-rooftop-entrance",
+      "asset_details": "BP_Custom_Rooftop_Entrance_Enhanced",
+      "place_on_constraints": ["highest_level"],
+      "rotation": {
+        "yaw": [0, 90, 180, 270]
+      },
+      "properties": {
+        "Skylight": [true, false],
+        "Material": [
+          "Mat_RooftopEnter_Inst",
+          "brick_03_Inst",
+          "brick_04_Inst",
+          "brick_01_Inst",
+          "concrete_ground_02_Inst",
+          "concrete_ground_03_Inst",
+          "Mat_Asphalt_Inst"
+        ]
+      }
+    },
+    {
+      "uid": "skylight",
+      "asset_details": "SM_RooftopGlass",
+      "place_on_constraints": ["highest_level"],
+      "rotation": {
+        "yaw": [0, 90, 180, 270]
+      }
+    },
+    {
+      "uid": "air-vents",
+      "asset_details": ["SM_RooftopVentilator", "SM_Tube_Vent"],
+      "materials": [
+        "Mat_RooftopVent_Inst",
+        "Mat_MetalHolders_Inst",
+        "Mat_MetalTube_Inst",
+        "Mat_MetalVent_Inst",
+        "Mat_MetalHandles_Inst"
+      ]
+    },
+    {
+      "uid": "small-building",
+      "asset_details": ["BP_Custom_Building_Rooftop_Small"],
+      "properties": {
+        "Material": [
+          "brick_03_Inst",
+          "brick_04_Inst",
+          "brick_01_Inst",
+          "concrete_ground_02_Inst",
+          "concrete_ground_03_Inst",
+          "Mat_Asphalt_Inst"
+        ]
+      }
+    },
+    {
+      "uid": "ac-unit",
+      "place_on_constraints": ["highest_level"],
+      "asset_details": [
+        ["SM_SmallAirConditioner", { "position": { "offset": { "z": 25 } } }],
+        "SM_RooftopCooler",
+        "SM_BigCooler",
+        [
+          "SM_AirConditioner_AirConditioner",
+          { "position": { "offset": { "z": -25 } } }
+        ]
+      ]
+    },
+    {
+      "uid": "seating",
+      "asset_details": ["BP_Custom_table"],
+      "properties": {
+        "Umbrella": [true, false],
+        "NumChairs": [0, 1, 2, 3, 4]
+      }
+    },
+    {
+      "uid": "any-ducts",
+      "asset_details": ["BP_airducts"]
+    },
+    {
+      "uid": "water-tower",
+      "place_on_constraints": ["highest_level"],
+      "asset_details": ["BP_HugeWaterTank", "SM_WaterTank"]
+    },
+    {
+      "uid": "chimney",
+      "place_on_constraints": ["highest_level"],
+      "asset_details": ["BP_chimney"],
+      "properties": {
+        "Material": [
+          "brick_01_Inst",
+          "brick_03_Inst",
+          "brick_04_Inst",
+          "brick_06_Inst"
+        ]
+      }
+    },
+    {
+      "uid": "enclosed-water-tower",
+      "place_on_constraints": ["highest_level"],
+      "asset_details": ["BP_Custom_Enclosed_WaterTank"],
+      "properties": {
+        "Material": [
+          "brick_01_Inst",
+          "brick_03_Inst",
+          "brick_04_Inst",
+          "brick_06_Inst"
+        ]
+      }
+    },
+    {
+      "uid": "tarp",
+      "asset_details": ["BP_prp_tarp"]
+    },
+    {
+      "uid": "vegetation",
+      "asset_details": ["BP_Foliage"],
+      "properties": {
+        "FoliageChoice": [0, 1, 2, 3]
+      }
+    }
+  ]
+}
