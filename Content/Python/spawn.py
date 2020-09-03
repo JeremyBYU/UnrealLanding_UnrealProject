@@ -3,6 +3,16 @@
 
 from __future__ import print_function, division    # (at top of module)
 import random
+import sys
+import os
+
+def update_paths():
+    sys.path.insert(0, os.path.dirname(__file__))
+    DLL_PATH = os.path.join(os.path.abspath(sys.prefix), "Library/bin")
+    ORIGINAL_PATH = os.environ['PATH']
+    os.environ['PATH'] = "%s;%s" % (DLL_PATH, ORIGINAL_PATH)
+
+update_paths()
 
 from unreal import  ScopedSlowTask
 import numpy as np

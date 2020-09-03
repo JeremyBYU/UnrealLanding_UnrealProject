@@ -40,6 +40,14 @@
 		{
 			"Name": "GLTFImporter",
 			"Enabled": true
+		},
+		{
+			"Name": "PythonScriptPlugin",
+			"Enabled": true
+		},
+		{
+			"Name": "EditorScriptingUtilities",
+			"Enabled": true
 		}
 	],
 	"TargetPlatforms": [
