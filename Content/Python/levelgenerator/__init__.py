@@ -280,6 +280,7 @@ def place_assets_in_map(assets, ue_map, slow_task=None):
     """Randomly places assets in the unreal engine map specified by ue_map """
     asset_base_path = assets['asset_base_path']
     # Check if user specified to sample quantity data from csv file
+    # Will place assets using a histogram
     if assets.get('assets_quantity_data'):
         quantity_sampler = QuantitySampler(
             import_rooftop_data(assets['assets_quantity_data']),
@@ -311,7 +312,6 @@ def place_assets_in_map(assets, ue_map, slow_task=None):
                 slow_task.enter_progress_frame(1)
                 count += 1
             # Choose random asset mesh, possibly overide properties
-            # Honestly this just seems like too much magical configuration
             # Must use deep copy...
             asset = deepcopy(DEFAULT_ASSET)
             update(asset, asset_)

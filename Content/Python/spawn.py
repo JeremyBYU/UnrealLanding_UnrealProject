@@ -32,7 +32,7 @@ def create_random_world(seed=1):
         levelgenerator.place_assets_in_map(assets, buildings, slow_task=slow_task)
 
 def main():
-    seed = 7
+    seed = 7 # choose a fixed random seed for exact reproduction
     create_random_world(seed)
 
 

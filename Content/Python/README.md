@@ -1,4 +1,12 @@
+# What is it
 
+This is a python script that will automatically place assets (meshes) randomly (within specified bounds) in a level. The assets are described in the `assets.json` with their placement bounds determined in `point_cloud_map.json`.  You also have the following abilities:
+
+    * Assets can be placed randomly or follow a histogram distribution you provide
+    * Assets can be rotated randomly
+    * Properties can be changed randomly
+    * Different forms of meshes of an assets can be chosen randomly (e.g many types (meshes) of ac units)
+    * Materials can be changed randomly
 
 ## Installation
 
