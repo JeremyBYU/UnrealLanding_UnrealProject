@@ -1,0 +1,12 @@
+{
+    "files.associations": {
+        "*.geojson": "jsonc",
+        "future": "cpp",
+        "memory": "cpp",
+        "random": "cpp",
+        "regex": "cpp",
+        "sstream": "cpp",
+        "xhash": "cpp",
+        "xlocnum": "cpp"
+    }
+}

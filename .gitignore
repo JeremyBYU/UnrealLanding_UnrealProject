@@ -6,7 +6,6 @@ Content/*
 !Content/Python/
 !Content/Python/*
 
-
 .vs/
 *.pyc
 *.npy
