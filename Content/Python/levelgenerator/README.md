@@ -65,8 +65,8 @@ This JSON file looks like this. Ther are comment annotations that explain some o
   "asset_base_path": "/Game/RoofAssets/meshes", // Base path for finding your assets
   "assets": [
     {
-      "uid": "TrashBag1", // some unique name to refer this this asset, like a label
-      "asset_path": "TrashBag_1_mdl", // this string is joined with asset_base_path to fully specify asset path
+      "uid": "small-rooftop-entrance", // some unique name to refer this this asset, like a label
+      "asset_details": "BP_Custom_Rooftop_Entrance_Enhanced", // this string is joined with asset_base_path to fully specify asset path
       // This specifies how many assets should be generated
       "quantity": {
         "mean": 10,
@@ -78,12 +78,11 @@ This JSON file looks like this. Ther are comment annotations that explain some o
       "place_on": ["Building*"],
       // property constraints of the features. must evaluate to true
       // E.g. feature must have property highest_level and be set to true
-      // This specifyly says only trashbags are only placed on the highest level of a multi-roof building
+      // This says only small-rooftop-entrances are only placed on the highest level of a multi-roof building
       "place_on_constraints": ["highest_level"],
-      // Rotation of asset. Samples uniformly between -45 degrees to + 45 degrees (0 - 45, 0 + 45)
+      // Rotation of asset are either 0, 90, 180, or 270 degrees
       "rotation": {
-        "yaw": 0,
-        "range": 45
+        "yaw": [0, 90, 180, 270]
       },
       // Position inside feature control
       "position": {
@@ -99,8 +98,19 @@ This JSON file looks like this. Ther are comment annotations that explain some o
         "center": "any", //['any', 'centroid', 'pia']
         "std": 50 
       },
-      // WIP, manipulate properties, materials, blueprint variables, etcl.
-      "properties": {}
+      // manipulate properties, materials, blueprint variables, etc.
+      "properties": {
+        "Skylight": [true, false], // whether a skylight is added on top of the entrance
+        "Material": [  // changes materials
+          "Mat_RooftopEnter_Inst",
+          "brick_03_Inst",
+          "brick_04_Inst",
+          "brick_01_Inst",
+          "concrete_ground_02_Inst",
+          "concrete_ground_03_Inst",
+          "Mat_Asphalt_Inst"
+        ]
+      }
     }
   ]
 }
@@ -113,49 +123,8 @@ This JSON file looks like this. Ther are comment annotations that explain some o
 * Dont duplicate and rename levels. You have to do a copy with drag and drop.*
   * Or use levelgenerator.helper.duplicate_level
 * Any source code modifications to levelgenerator require you to restart the Unreal Engine. This is because the module has been loaded and cached. 
-  * Its like IPython, but very even more difficult to reload changes in module code.
+  * Its like IPython, but even more difficult to reload changes in module code.
   * This may work `import spawn; reload(spawn.levelgenerator)`
 
-
-# Our Specific Notes
-
-Modified Code in `AirBlueprintLib.h`
-```cpp
-template<class T>
-    static std::string GetMeshName(T* mesh)
-    {
-		std::regex building_regex;
-		std::regex bp_custom_regex;
-		building_regex.assign("Building.*", std::regex_constants::icase);
-		bp_custom_regex.assign(".*BP_Custom_.*", std::regex_constants::icase);
-        switch (mesh_naming_method_)
-        {
-        case msr::airlib::AirSimSettings::SegmentationSetting::MeshNamingMethodType::OwnerName:
-			if (mesh->GetOwner())
-			{
-                auto name = std::string(TCHAR_TO_UTF8(*(mesh->GetOwner()->GetName())));
-				if (std::regex_match(name, building_regex) || std::regex_match(name, bp_custom_regex))
-				{
-					auto name1 = std::string(TCHAR_TO_UTF8(*(UKismetSystemLibrary::GetDisplayName(mesh))));
-					return name1;
-				}
-				else
-				{
-					return name;
-				}
-
-			}
-            else
-                return "";
-        case msr::airlib::AirSimSettings::SegmentationSetting::MeshNamingMethodType::StaticMeshName:
-			if (mesh->GetStaticMesh())
-                return std::string(TCHAR_TO_UTF8(*(mesh->GetStaticMesh()->GetName())));
-            else
-                return "";
-        default:
-            return "";
-        }
-    }
-```
 
 
