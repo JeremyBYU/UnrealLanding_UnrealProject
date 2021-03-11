@@ -21,7 +21,7 @@
 		},
 		{
 			"Name": "PointCloudGeneratorPlugin",
-			"Enabled": true
+			"Enabled": false
 		},
 		{
 			"Name": "glTFForUE4",
